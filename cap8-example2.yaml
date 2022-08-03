@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:  
+  labels:
+    run: dp-pv
+  name: dp-pv
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /data/db
