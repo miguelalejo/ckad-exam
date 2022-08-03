@@ -6,14 +6,29 @@ metadata:
     run: busybox
   name: busybox
 spec:
+  volumes:
+    - name: myvol
+      emptyDir: {}
   containers:
-  - args:
+  - args: 
     - /bin/sh
     - -c
     - sleep 3600
     image: busybox
     name: busybox
     resources: {}
+    volumeMounts:
+    - name: myvol
+      mountPath: /etc/foo
+  - args:
+    - /bin/sh
+    - c
+    - sleep 3600
+    image: busybox
+    name: busybox2
+    volumeMounts:
+    - name: myvol
+      mountPath: /etc/foo
   dnsPolicy: ClusterFirst
   restartPolicy: Never
 status: {}
