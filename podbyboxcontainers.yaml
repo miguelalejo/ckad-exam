@@ -10,22 +10,17 @@ spec:
     - name: myvol
       emptyDir: {}
   containers:
-  - args: 
-    - /bin/sh
-    - -c
-    - sleep 3600
-    image: busybox
-    name: busybox
-    resources: {}
+  - name: busybox
+    command : ["/bin/sh"]
+    args: ["-c","while true; do sleep 3600; done;"]
+    image: busybox        
     volumeMounts:
     - name: myvol
       mountPath: /etc/foo
-  - args:
-    - /bin/sh
-    - c
-    - sleep 3600
-    image: busybox
-    name: busybox2
+  - name: busybox2
+    command : ["/bin/sh"]
+    args: ["-c","while true; do sleep 3600; done;"]
+    image: busybox    
     volumeMounts:
     - name: myvol
       mountPath: /etc/foo
