@@ -6,6 +6,9 @@ metadata:
     run: nginx-app
   name: nginx-app
 spec:
+  volumes:
+  - name: logs-volume
+    emptyDir: {}
   containers:
   - image: nginx
     name: nginx

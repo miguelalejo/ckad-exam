@@ -1,0 +1,2 @@
+#Create pod
+k run nginx --image=nginx --restart=Never -o yaml --dry-run=client
