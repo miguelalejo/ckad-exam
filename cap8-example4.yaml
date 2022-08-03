@@ -15,5 +15,5 @@ spec:
     command : ["/bin/sh"]
     args: ["-c","while true; do sleep 60; done;"]
     volumeMounts:
-      - mounthPath: "/mnt/data"
+      - mountPath: "/mnt/data"
         name: app-storage
