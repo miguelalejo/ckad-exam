@@ -10,7 +10,7 @@ spec:
     persistentVolumeClaim:
       claimName: db-pvc
   containers:
-  - images: alpine
+  - image: alpine
     name: app
     command : ["/bin/sh"]
     args: ["-c","while true; do sleep 60; done;"]
