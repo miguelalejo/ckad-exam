@@ -1,0 +1,41 @@
+gcloud container clusters create hello-cluster \
+    --num-nodes=1 \
+    --zone=us-central1
+	
+gcloud container clusters get-credentials hello-cluster
+
+
+kubectl create deployment hello-server \
+    --image=us-docker.pkg.dev/google-samples/containers/gke/hello-app:1.0
+
+kubectl expose deployment hello-server --type LoadBalancer --port 80 --target-port 8080
+
+
+
+#Compile Docker iamges
+
+git clone https://github.com/miguelalejo/docker-react-2022.git
+
+2)
+GOTO Create Repository then create
+3)
+gcloud auth configure-docker \
+    us-central1-docker.pkg.dev
+4)
+docker build -t us-central1-docker.pkg.dev/ds-on-gcp-353916/us-central1-docker/react-app:v1 .
+
+5)
+docker images
+6)
+docker push us-central1-docker.pkg.dev/ds-on-gcp-353916/us-central1-docker/react-app:v1
+
+
+#Deploy Image
+kubectl create deployment react-ser-app \
+    --image=us-central1-docker.pkg.dev/ds-on-gcp-353916/us-central1-docker/react-app:v1
+	
+kubectl expose deployment react-ser-app --type LoadBalancer --port 80 --target-port 8080
+
+kubectl delete service react-ser-app
+
+kubectl run busybox --image=busybox --restart=Never -o yaml --dry-run=client -- /bin/sh -c 'sleep 3600'>podbyboxcontainers.yaml 
