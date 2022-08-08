@@ -16,3 +16,24 @@ https://cloud.google.com/kubernetes-engine/docs/how-to/exposing-apps#console_1
 kubectl get nodes
 gcloud compute instances list
 curl 192.168.64.2:32300
+
+gcloud container clusters list
+gcloud container clusters describe hello-cluster | grep  -A2 networkPolicy
+networkPolicyConfig:
+    disabled: true
+
+Set Clusters:
+Network policy	Enable
+Pod policy Enable
+
+
+
+kubectl run backend --image=nginx --restart=Never --port=80
+kubectl get pods backend -o wide
+kubectl run frontend --rm -it --image=busybox --restart=Never -- /bin/sh
+kubectl create -f networkpolicy-deny-all.yaml
+kubectl run frontend --rm -it --image=busybox --restart=Never -- /bin/sh
+
+
+
+
