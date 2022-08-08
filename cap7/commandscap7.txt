@@ -1,0 +1,18 @@
+kubectl create service clusterip nginx-service --tcp=80:80
+kubectl run nginx --image=nginx --resart=Never --port=80 --expose
+kubectl run nginx-get --image=nginx --restart=Never --port=80 --expose
+kubectl run busybox --image=busybox --restart=Never -it -- /bin/sh
+
+
+kubectl proxy --port=9999
+curl -L localhost:9999/api/v1/namespaces/default/services/nginx/proxy
+
+## accesing via node port
+kubectl patch service nginx -p '{ "spec": {"type": "NodePort"}}'
+
+
+https://cloud.google.com/kubernetes-engine/docs/how-to/exposing-apps#console_1
+
+kubectl get nodes
+gcloud compute instances list
+curl 192.168.64.2:32300
