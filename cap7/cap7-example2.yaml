@@ -7,8 +7,10 @@ spec:
     matchLabels:
       app: payment-processor
       role: api
+  policyTypes:
+    - Ingress    
   ingress:
-  - from:
-    - podSelector:
-        matchLabels:
-          app: coffeeshop
+    - from:        
+        - podSelector:
+            matchLabels:
+              app: coffeeshop
